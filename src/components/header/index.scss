@@ -1,13 +1,55 @@
-.header-container{
+.header-container {
     display: flex;
+    align-items: center;
     width: 100%;
-    background: red;
+    background: rgb(44, 114, 149);
+    border-radius: 40px 40px 0 0;
     height: 100px;
     justify-content: space-between;
-    input{
-        margin-left: 100px;
+    color: white;
+
+    .header__search {
+        display: flex;
+        flex-direction: column;
+        margin-left: 20px;
+
+        .header__search-icon{
+            display: flex;
+            color: black;
+            font-size: 25px;
+            position: relative;
+            top: 32px;
+            left: 172px;
+        }
+
+        input {
+            display: flex;
+            width: 200px;
+            height: 40px;
+            border-radius: 20px;
+            border-style: none;
+        }
     }
-    .header__basket{
+
+    .header__basket {
+        display: flex;
         margin-right: 100px;
+
+        .header__amount {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            left: 20px;
+            bottom: 15px;
+            background: rgb(0, 208, 255);
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+        }
+
+        .header__icon {
+            font-size: 50px;
+        }
     }
 }
