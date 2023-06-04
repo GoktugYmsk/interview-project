@@ -6,8 +6,18 @@
 
     .leftBar__container {
         display: flex;
-        background: green;
         width: 30%;
+
+        li{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 300px;
+            height: 65px;
+            border: 2px solid rgb(86, 85, 85);
+            margin-top: 80px;
+            cursor: pointer;
+        }
     }
 
     .product-list {
@@ -25,18 +35,21 @@
                 justify-content: flex-end;
                 flex-direction: column;
                 padding: 10px;
-                width: 540px;
+                width: 640px;
                 border: 2px solid red;
                 margin-left: 100px;
                 height: 650px;
                 color: white;
+                p{
+                    font-size: 12px;
+                }
                 .product-object__hr{
                     width: 300px;
                 }
                 img{
-                    width: 300px;
-                    height: 300px;
-                    object-fit: cover;
+                    width: 400px;
+                    height: 400px;
+                    object-fit: contain;
                 }
             }
         }
