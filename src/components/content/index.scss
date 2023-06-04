@@ -1,0 +1,45 @@
+.content-container {
+    display: flex;
+    border: 2px solid black;
+    height: 90%;
+    width: 100%;
+
+    .leftBar__container {
+        display: flex;
+        background: green;
+        width: 30%;
+    }
+
+    .product-list {
+        display: flex;
+        align-items: center;
+        background: blue;
+        padding: 20px;
+        width: 1200px;
+        overflow: auto;
+
+        .product-container {
+            .product-object{
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+                flex-direction: column;
+                padding: 10px;
+                width: 540px;
+                border: 2px solid red;
+                margin-left: 100px;
+                height: 650px;
+                color: white;
+                .product-object__hr{
+                    width: 300px;
+                }
+                img{
+                    width: 300px;
+                    height: 300px;
+                    object-fit: cover;
+                }
+            }
+        }
+    }
+
+}

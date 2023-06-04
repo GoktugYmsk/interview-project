@@ -1,0 +1,13 @@
+.header-container{
+    display: flex;
+    width: 100%;
+    background: red;
+    height: 100px;
+    justify-content: space-between;
+    input{
+        margin-left: 100px;
+    }
+    .header__basket{
+        margin-right: 100px;
+    }
+}
