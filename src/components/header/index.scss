@@ -2,38 +2,49 @@
     display: flex;
     align-items: center;
     width: 100%;
-    background: rgb(44, 114, 149);
-    border-radius: 40px 40px 0 0;
+    background: rgb(255, 221, 0);
     height: 100px;
-    justify-content: space-between;
+    justify-content: center;
     color: white;
 
     .header__search {
         display: flex;
         flex-direction: column;
-        margin-left: 20px;
+        margin-left: 450px;
+        
 
-        .header__search-icon{
+        .header__search-icon {
             display: flex;
             color: black;
             font-size: 25px;
             position: relative;
             top: 32px;
-            left: 172px;
+            left: 622px;
+            cursor: pointer;
         }
 
         input {
             display: flex;
-            width: 200px;
+            width: 650px;
             height: 40px;
             border-radius: 20px;
             border-style: none;
+            &::placeholder{
+                display: flex;
+                color: black;
+                font-weight: 600;
+            }
         }
     }
 
     .header__basket {
         display: flex;
-        margin-right: 100px;
+        align-items: center;
+        justify-content: center;
+        width: 220px;
+        margin-left: 320px;
+        margin-top: 30px;
+        background: rgb(236, 204, 0);
 
         .header__amount {
             display: flex;
@@ -49,6 +60,7 @@
         }
 
         .header__icon {
+            cursor: pointer;
             font-size: 50px;
         }
     }

@@ -5,8 +5,7 @@
 
     .leftBar__container {
         display: flex;
-        background: rgb(56, 125, 160);
-        border-radius: 0 0 0 40px;
+        background: rgb(248, 234, 175);
         width: 30%;
 
         li {
@@ -15,14 +14,17 @@
             justify-content: center;
             width: 300px;
             height: 65px;
-            border: 2px solid rgb(209, 206, 206);
+            border: 2px solid rgb(206, 207, 209);
             border-radius: 15px;
+            background: rgb(241, 207, 52);
+            font-weight: 750;
             color: white;
-            margin-top: 80px;
+            margin-top: 30px;
             cursor: pointer;
+            box-shadow: 0 0 4px 1px white;
 
             &:hover {
-                background: rgba(61, 139, 178, 0.583);
+                background: rgb(226, 198, 72);
             }
         }
 
@@ -31,8 +33,6 @@
     .product-list {
         display: flex;
         align-items: center;
-        background: rgb(111, 145, 162);
-        border-radius: 0 0 40px 0;
         padding: 20px;
         width: 1200px;
         overflow: auto;
@@ -41,44 +41,74 @@
             .product-object {
                 display: flex;
                 align-items: center;
+                justify-content: center;
                 flex-direction: column;
                 padding: 10px;
-                width: 640px;
-                border: 2px solid rgb(181, 184, 187);
+                width: 440px;
+                border: 2px solid rgb(181, 181, 187);
                 border-radius: 20px;
                 margin-left: 100px;
-                height: 650px;
-                color: white;
+                background: white;
+                height: 520px;
 
-                p {
-                    font-size: 20px;
-                    margin-left: 200px;
+
+                .product-object__list {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    position: relative;
+                    top: 10px;
+
+                    p {
+                        font-size: 20px;
+                        margin-left: 200px;
+                    }
+
+                    .product-object__hr {
+                        width: 300px;
+                    }
+
+                    img {
+                        display: flex;
+                        width: 200px;
+                        height: 200px;
+                        object-fit: contain;
+                    }
+
                 }
 
-                .product-object__hr {
-                    width: 300px;
-                }
-
-                img {
-                    width: 300px;
-                    height: 300px;
-                    object-fit: contain;
-                }
-
-                button {
+                .product__add-button {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin-top: 20px;
                     width: 220px;
-                    height: 80px;
-                    background: rgb(0, 157, 255);
+                    height: 60px;
+                    background: rgb(247, 213, 62);
                     cursor: pointer;
                     color: white;
                     border-style: none;
                     border-radius: 20px;
-                    margin-top: 80px;
                     font-size: 16px;
+                    box-shadow: 0 0 3px 2px rgb(255, 255, 255);
+                    font-weight: 600;
 
                     &:hover {
-                        background: rgb(49, 169, 243);
+                        background: rgb(252, 219, 69);
                         transform: scale(0.9);
+                    }
+                }
+
+                .product__delete-icon {
+                    position: relative;
+                    display: flex;
+                    font-size: 40px;
+                    margin-left: 380px;
+                    cursor: pointer;
+
+                    &:hover {
+                        color: red;
                     }
                 }
             }

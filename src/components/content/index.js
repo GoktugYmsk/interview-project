@@ -60,6 +60,11 @@ function Content() {
             </li>
           ))}
         </ul>
+        <div className='leftBar__container-price' >
+          <p></p>
+          <input className='input-min'/>
+          <input className='input-max' />
+        </div>
       </div>
       <div className='product-list'>
         {filteredProducts.map((product, index) => (
@@ -71,9 +76,8 @@ function Content() {
                 <hr className='product-object__hr' />
                 <p>{product.price} TL</p>
               </div>
-              <button className='product__add-button' onClick={() => handleClick(product.id)} >Add to cart</button>
-              <RiDeleteBin5Fill onClick={() => handleDelete(product.id)} className='product__delete-icon' />
-
+              <button className='product__add-button' onClick={() => handleClick(product)} >Add to cart</button>
+              <RiDeleteBin5Fill onClick={() => handleDelete(product)} className='product__delete-icon' />
             </div>
           </div>
         ))}
