@@ -3,16 +3,22 @@ import React, { useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { FaShoppingBasket } from 'react-icons/fa';
 import { HiOutlineSearch } from 'react-icons/hi';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
+
+import Basket from './basket';
 import { setInput } from '../configure/configure';
 import './index.scss';
 
 function Header() {
     const [isInputFocused, setIsInputFocused] = useState(false);
+    const [active, setActive] = useState(false)
 
     const dispatch = useDispatch();
     const amount = useSelector((state) => state.amountValue.amount);
     const inputRef = useRef(null);
+
+    const logo = 'https://uploads-ssl.webflow.com/605c9d764f1ef938a009ac98/61e01bfbdd8632a72962edc2_Pinsoft_Yatay_Logo_mavi-for%20animation.svg'
 
 
     const handleChange = (e) => {
@@ -29,28 +35,47 @@ function Header() {
         setIsInputFocused(false);
     };
 
-    const handleBasketClick = () =>{
-        alert('çalıştı')
+    const handleBasketClick = () => {
+        setActive(true)
     }
 
-    return (
-        <div className='header-container'>
-            <div className='header__search' >
-                <HiOutlineSearch className='header__search-icon' onClick={handleIconClick} />
-                <input ref={inputRef}
-                    onBlur={handleInputBlur}
-                    onChange={(e) => handleChange(e)}
-                    placeholder='Search' />
-            </div>
-            <div className='header__basket'>
-                Sepetim
-                <p className='header__amount'>
-                    {amount}
-                </p>
-                <FaShoppingBasket onClick={handleBasketClick} className='header__icon' />
-            </div>
 
-        </div>
+    const handleModalClose = () => {
+        setActive(false);
+    };
+
+
+    return (
+        <>
+            <div className='header-container'>
+                <img className='header-logo' src={logo} />
+                <div class="input-group">
+                    <input ref={inputRef}
+                        onBlur={handleInputBlur}
+                        onChange={(e) => handleChange(e)}
+                        placeholder='Search'
+                        type="text" class="form-control"
+                        aria-label="Dollar amount (with dot and two decimal places)" />
+                    <span class="input-group-text"><HiOutlineSearch onClick={handleIconClick} /></span>
+                </div>
+                {!active &&
+                    <div onClick={handleBasketClick} className='header__basket'>
+                        Sepetim
+                        <p className='header__amount'>
+                            {amount}
+                        </p>
+                        <FaShoppingBasket className='header__icon' />
+                    </div>
+                }
+                {active &&
+                    <div className='basket-modal' >
+                        <h1>Sepetim</h1>
+                        
+                        <button onClick={handleModalClose} className='basket-model__close' >Alışverişe devam et</button>
+                    </div>
+                }
+            </div>
+        </>
     );
 }
 

@@ -25,7 +25,7 @@ function Content() {
       setList(data);
     }
   };
-  
+
   const handleClick = (productId) => {
     const updatedCount = count + 1;
     setCount(updatedCount);
@@ -60,11 +60,6 @@ function Content() {
             </li>
           ))}
         </ul>
-        <div className='leftBar__container-price' >
-          <p></p>
-          <input className='input-min'/>
-          <input className='input-max' />
-        </div>
       </div>
       <div className='product-list'>
         {filteredProducts.map((product, index) => (
