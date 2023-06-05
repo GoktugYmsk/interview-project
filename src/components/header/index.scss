@@ -63,17 +63,25 @@
 
 .basket-modal {
     display: flex;
-    align-items: center;
-    justify-content: center;
     flex-direction: column;
-    background: rgb(255, 179, 0);
-    height: 1593px;
-    width: 600px !important;
+    align-items: center;
+    width: 500px;
+    height: 857px;
+    background: rgb(203, 203, 203);
     position: relative;
+    top: 378px;
     left: 30px;
     z-index: 2;
+    color: black;
 
-    button {
+    button{
+        width: 60px;
+        height: 30px;
+        border-style: none;
+        border-radius: 20px;
+    }
+
+    .basket-model__close {
         cursor: pointer;
         border-style: none;
         width: 160px;
@@ -81,6 +89,7 @@
         font-weight: 750;
         color: white;
         background: rgb(255, 213, 0);
+        border-radius: 20px;
 
         &:hover {
             background: rgb(255, 225, 73);

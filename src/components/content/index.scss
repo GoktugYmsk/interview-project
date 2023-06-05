@@ -1,30 +1,40 @@
 .content-container {
     display: flex;
-    height: 85%;
+    height: 2000px;
     width: 100%;
 
     .leftBar__container {
         display: flex;
-        background: rgb(248, 234, 175);
+        flex-direction: column;
+        align-content: center;
+        justify-content: center;
+        border: 2px solid rgb(161, 159, 159);
         width: 30%;
+        height: 600px;
+        margin-top: 80px;
+
+        h3 {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-left: 10px;
+        }
 
         li {
             display: flex;
             align-items: center;
             justify-content: center;
             width: 300px;
-            height: 65px;
+            height: 45px;
             border: 2px solid rgb(206, 207, 209);
             border-radius: 15px;
-            background: rgb(241, 207, 52);
             font-weight: 750;
-            color: white;
             margin-top: 30px;
             cursor: pointer;
             box-shadow: 0 0 4px 1px white;
 
             &:hover {
-                background: rgb(226, 198, 72);
+                background: rgb(182, 181, 181);
             }
         }
 
@@ -44,7 +54,7 @@
                 justify-content: center;
                 flex-direction: column;
                 padding: 10px;
-                width: 440px;
+                width: 300px;
                 border: 2px solid rgb(181, 181, 187);
                 border-radius: 20px;
                 margin-left: 100px;
@@ -58,15 +68,20 @@
                     align-items: center;
                     justify-content: center;
                     position: relative;
-                    top: 10px;
+
+                    h4{
+                        display: flex;
+                        margin-top: 10px;
+                    }
 
                     p {
-                        font-size: 20px;
+                        font-size: 16px;
                         margin-left: 200px;
                     }
 
                     .product-object__hr {
-                        width: 300px;
+                        width: 200px;
+                        border: 2px solid black;
                     }
 
                     img {
@@ -83,8 +98,8 @@
                     align-items: center;
                     justify-content: center;
                     margin-top: 20px;
-                    width: 220px;
-                    height: 60px;
+                    width: 150px;
+                    height: 40px;
                     background: rgb(247, 213, 62);
                     cursor: pointer;
                     color: white;

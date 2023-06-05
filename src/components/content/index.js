@@ -1,58 +1,55 @@
 import React, { useState } from 'react';
-
 import { useDispatch, useSelector } from 'react-redux';
 import data from '../../assets/data';
 import { RiDeleteBin5Fill } from 'react-icons/ri';
-
+import { setProductList } from '../configure/configure';
 import { setAmount } from '../configure/configure';
 import './index.scss';
 
 function Content() {
   const [list, setList] = useState(data);
   const [selectedCategory, setSelectedCategory] = useState('');
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   const input = useSelector((state) => state.inputValue.input);
+  const productList = useSelector((state) => state.productInfo.productList);
+  const productListArray = Array.isArray(productList) ? productList : [productList];
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const filterProducts = (category) => {
     setSelectedCategory(category);
     if (category) {
-      const filteredList = data.filter((product) => product.category === category && product.title.toLowerCase().includes(input.toLowerCase()));
+      const filteredList = data.filter(
+        (product) =>
+          product.category === category &&
+          product.title.toLowerCase().includes(input.toLowerCase())
+      );
       setList(filteredList);
     } else {
       setList(data);
     }
   };
 
-  const handleClick = (productId) => {
+  const handleClick = (product) => {
     const updatedCount = count + 1;
     setCount(updatedCount);
     dispatch(setAmount(updatedCount));
-    console.log('product added', productId);
+
+    const updatedProductList = [...productListArray, product];
+    dispatch(setProductList(updatedProductList));
   };
-
-  const handleDelete = (productId) => {
-    if (count > 0) {
-      const updatedCount = count - 1;
-      setCount(updatedCount);
-      dispatch(setAmount(updatedCount));
-      console.log('product deleted', productId);
-    } else {
-      console.log('Count is already 0. Cannot decrease further.');
-    }
-  };
-
-
-
-  const filteredProducts = list.filter((product) => product.title.toLowerCase().includes(input.toLowerCase()));
+  
+  const filteredProducts = list.filter((product) =>
+    product.title.toLowerCase().includes(input.toLowerCase())
+  );
 
   const uniqueCategories = [...new Set(data.map((product) => product.category))];
 
   return (
-    <div className='content-container'>
-      <div className='leftBar__container'>
+    <div className="content-container">
+      <div className="leftBar__container">
+        <h3>Ürün Çeşidi</h3>
         <ul>
           {uniqueCategories.map((option, index) => (
             <li key={index} onClick={() => filterProducts(option)}>
@@ -61,18 +58,22 @@ function Content() {
           ))}
         </ul>
       </div>
-      <div className='product-list'>
+      <div className="product-list">
         {filteredProducts.map((product, index) => (
-          <div key={index} className='product-container'>
-            <div className='product-object'>
-              <div className='product-object__list'>
+          <div key={index} className="product-container">
+            <div className="product-object">
+              <div className="product-object__list">
                 <img src={product.image} alt={product.title} />
-                <h3>{product.title}</h3>
-                <hr className='product-object__hr' />
+                <h4>{product.title}</h4>
+                <hr className="product-object__hr" />
                 <p>{product.price} TL</p>
               </div>
-              <button className='product__add-button' onClick={() => handleClick(product)} >Add to cart</button>
-              <RiDeleteBin5Fill onClick={() => handleDelete(product)} className='product__delete-icon' />
+              <button
+                className="product__add-button"
+                onClick={() => handleClick(product)}
+              >
+                Add to basket
+              </button>
             </div>
           </div>
         ))}

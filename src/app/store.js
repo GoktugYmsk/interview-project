@@ -5,5 +5,6 @@ export const store = configureStore({
     reducer: {
         inputValue: configure,
         amountValue: configure,
+        productInfo: configure,
     },
 })
