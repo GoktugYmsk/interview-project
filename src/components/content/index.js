@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import data from '../../assets/data';
+import { RiDeleteBin5Fill } from 'react-icons/ri';
 
 import { setAmount } from '../configure/configure';
 import './index.scss';
@@ -24,12 +25,26 @@ function Content() {
       setList(data);
     }
   };
-
+  
   const handleClick = (productId) => {
-    console.log('product id', productId);
-    setCount(count + 1);
-    dispatch(setAmount(count));
+    const updatedCount = count + 1;
+    setCount(updatedCount);
+    dispatch(setAmount(updatedCount));
+    console.log('product added', productId);
   };
+
+  const handleDelete = (productId) => {
+    if (count > 0) {
+      const updatedCount = count - 1;
+      setCount(updatedCount);
+      dispatch(setAmount(updatedCount));
+      console.log('product deleted', productId);
+    } else {
+      console.log('Count is already 0. Cannot decrease further.');
+    }
+  };
+
+
 
   const filteredProducts = list.filter((product) => product.title.toLowerCase().includes(input.toLowerCase()));
 
@@ -50,11 +65,15 @@ function Content() {
         {filteredProducts.map((product, index) => (
           <div key={index} className='product-container'>
             <div className='product-object'>
-              <img src={product.image} alt={product.title} />
-              <h3>{product.title}</h3>
-              <hr className='product-object__hr' />
-              <p>{product.price} TL</p>
-              <button onClick={() => handleClick(product.id)} >Add to cart</button>
+              <div className='product-object__list'>
+                <img src={product.image} alt={product.title} />
+                <h3>{product.title}</h3>
+                <hr className='product-object__hr' />
+                <p>{product.price} TL</p>
+              </div>
+              <button className='product__add-button' onClick={() => handleClick(product.id)} >Add to cart</button>
+              <RiDeleteBin5Fill onClick={() => handleDelete(product.id)} className='product__delete-icon' />
+
             </div>
           </div>
         ))}
