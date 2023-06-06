@@ -136,7 +136,7 @@ function Header() {
                                 <div key={index} className="basket-modal__list">
                                     <p>{product.title}</p>
                                     <img src={product.image} alt={product.title} />
-                                    <p>Adet: {product.count}</p>
+                                    <p className='basket-modal__list-amount' >Adet: {product.count}</p>
                                     <div className="count-controls">
                                         <button onClick={() => handleDecrementCount(product.id)}>-</button>
                                         <button onClick={() => handleIncrementCount(product.id)}>+</button>
