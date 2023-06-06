@@ -89,7 +89,6 @@ function Content() {
               >
                 Add to basket
               </button>
-              <button>Remove to basket</button>
             </div>
           </div>
         ))}
