@@ -13,6 +13,7 @@ function Content() {
   const input = useSelector((state) => state.inputValue.input);
   const selectedProductList = useSelector((state) => state.productInfo.selectedProductList);
   const active = useSelector((state) => state.pageBlur.active)
+  const amount = useSelector((state) => state.amountValue.amount);
 
 
   const dispatch = useDispatch();
@@ -44,8 +45,7 @@ function Content() {
   };
 
   const handleClick = (product) => {
-    const updatedCount = count + 1;
-    setCount(updatedCount);
+    const updatedCount = amount + 1;
     dispatch(setAmount(updatedCount));
 
     const updatedProductList = [...selectedProductList, product];
@@ -54,6 +54,8 @@ function Content() {
   };
 
   const handleRemove = (product) => {
+    const updatedCount = amount - 1;
+    dispatch(setAmount(updatedCount));
     const updatedProductList = selectedCategories.filter(
       (item) => item.title !== product.title
     );

@@ -40,28 +40,6 @@ function Header() {
         dispatch(setActive(true))
     };
 
-    const handleAddToProduct = (productId) => {
-        const updatedProductList = selectedProductList.map((product) => {
-            if (product.id === productId) {
-                return { ...product, count: product.count + 1 };
-            }
-            return product;
-        });
-
-        dispatch(setSelectedProductList(updatedProductList));
-    };
-
-    const getProductCount = (productId) => {
-        const productCount = selectedProductList.reduce((count, product) => {
-            if (product.id === productId) {
-                return count + 1;
-            }
-            return count;
-        }, 0);
-        return productCount;
-    };
-
-
     useEffect(() => {
         const prepareProductList = selectedProductList.map((product) => {
             return {

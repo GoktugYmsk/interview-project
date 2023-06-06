@@ -1,65 +1,89 @@
-import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React, { useEffect, useRef, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { RiDeleteBin5Fill } from 'react-icons/ri';
-import { setSelectedProductList,setActive } from '../../configure/configure';
+import { setSelectedProductList, setActive, setAmount } from '../../configure/configure';
 
 function Basket() {
-
-    const active = useSelector((state) => state.pageBlur.active)
+    const active = useSelector((state) => state.pageBlur.active);
     const selectedProductList = useSelector((state) => state.productInfo.selectedProductList);
-
     const dispatch = useDispatch();
+    const wrapperRef = useRef(null);
+    const [productCounts, setProductCounts] = useState({});
 
+    
+    const amount = useSelector((state) => state.amountValue.amount);
     const handleDeleteProduct = (productId) => {
-        const updatedProductList = selectedProductList.filter((product) => product.id !== productId);
+        const updatedProductList = selectedProductList.filter(
+          (product) => product.id !== productId
+        );
         dispatch(setSelectedProductList(updatedProductList));
-    };
+      
+        const deletedProductCount = productCounts[productId] || 0;
+        dispatch(setAmount(amount - deletedProductCount));
+      };
 
-
+      
     const handleModalClose = () => {
-        dispatch(setActive(false))
+        dispatch(setActive(false));
     };
-
-
-    const handleIncrementCount = (productId) => {
-        const updatedProductList = selectedProductList.map((product) => {
-            if (product.id === productId) {
-                console.log(product)
-                return { ...product, count: product?.count + 1 };
-            }
-            return product;
-        });
-
-        console.log(updatedProductList)
-        dispatch(setSelectedProductList(updatedProductList));
-    };
+    
 
     const handleDecrementCount = (productId) => {
-        const updatedProductList = selectedProductList.map((product) => {
-            if (product.id === productId && product.count > 0) {
-                return { ...product, count: product.count - 1 };
-            }
-            return product;
-        });
-
-        dispatch(setSelectedProductList(updatedProductList));
+        const currentCount = productCounts[productId] || 0;
+        const newCount = currentCount > 0 ? currentCount - 1 : 0;
+        setProductCounts(prevCounts => ({
+            ...prevCounts,
+            [productId]: newCount,
+        }));
+        dispatch(setAmount(amount - 1)); 
     };
+
+    const handleIncrementCount = (productId) => {
+        const currentCount = productCounts[productId] || 0;
+        const newCount = currentCount + 1;
+        setProductCounts(prevCounts => ({
+            ...prevCounts,
+            [productId]: newCount,
+        }));
+        dispatch(setAmount(amount + 1)); 
+    };
+    useEffect(() => {
+        const initialProductCounts = {};
+        selectedProductList.forEach((product) => {
+          const existingCount = productCounts[product.id] || 0;
+          initialProductCounts[product.id] = existingCount > 0 ? existingCount : 1;
+        });
+        setProductCounts(initialProductCounts);
+      }, [selectedProductList]);
+      
+    useEffect(() => {
+        function handleClickOutside(event) {
+            if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
+                dispatch(setActive(false));
+            }
+        }
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [dispatch]);
 
     return (
         <>
             {active && (
-                <div className="basket-modal">
+                <div className="basket-modal" ref={wrapperRef}>
                     <h2>Sepetim</h2>
                     {selectedProductList.length > 0 ? (
                         <div className="basket-modal__box">
                             {selectedProductList.map((product, index) => (
                                 <div key={index} className="basket-modal__list">
-                                    <div className='basket-modal__list-top' >
+                                    <div className="basket-modal__list-top">
                                         <img src={product.image} alt={product.title} />
                                         <p>{product.title}</p>
                                     </div>
-                                    <div className='basket-modal__list-alt' >
-                                        <p className='basket-modal__list-amount' >Adet: {product.count}</p>
+                                    <div className="basket-modal__list-alt">
+                                        <p className="basket-modal__list-amount">Adet: {productCounts[product.id] || 0}</p>
                                         <div className="count-controls">
                                             <button onClick={() => handleDecrementCount(product.id)}>-</button>
                                             <button onClick={() => handleIncrementCount(product.id)}>+</button>
@@ -72,16 +96,18 @@ function Basket() {
                                 </div>
                             ))}
                         </div>
+
                     ) : (
                         <p>sepetiniz boş</p>
                     )}
                     <button onClick={handleModalClose} className="basket-model__close">
-                        Keep Shopping
+                        Alışverişe Devam Et
                     </button>
                 </div>
             )}
         </>
-    )
+    );
+
 }
 
-export default Basket
+export default Basket;

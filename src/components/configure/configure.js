@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
     input: '',
-    amount: '0',
+    amount: 0,
     selectedProductList: [],
     active: false,
 }
