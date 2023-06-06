@@ -9,8 +9,9 @@ function Basket() {
     const dispatch = useDispatch();
     const wrapperRef = useRef(null);
     const [productCounts, setProductCounts] = useState({});
-
     const amount = useSelector((state) => state.amountValue.amount);
+    const [showWarning, setShowWarning] = useState(false);
+
     const handleDeleteProduct = (productId) => {
         const updatedProductList = selectedProductList.filter(
             (product) => product.id !== productId
@@ -78,6 +79,18 @@ function Basket() {
         };
     }, [dispatch]);
 
+    useEffect(() => {
+        // Check if any count exceeds the rating count
+        const exceedsRating = selectedProductList.some((product) => {
+            const ratingCount = product.rating.count;
+            const currentCount = productCounts[product.id] || 0;
+            return currentCount > ratingCount;
+        });
+
+        setShowWarning(exceedsRating);
+    }, [selectedProductList, productCounts]);
+
+
     return (
         <>
             {active && (
@@ -110,10 +123,12 @@ function Basket() {
                                             />
                                         </div>
                                     </div>
+                                    {showWarning && (productCounts[product.id] > product.rating.count) && (
+                                        <p style={{ color: 'red' }}>Quantity entered exceeds stock quantity!</p>
+                                    )}
                                 </div>
                             ))}
                         </div>
-
                     ) : (
                         <p>sepetiniz boş</p>
                     )}
@@ -124,7 +139,5 @@ function Basket() {
             )}
         </>
     );
-
 }
-
 export default Basket;

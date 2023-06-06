@@ -1,3 +1,5 @@
+@import 'bootstrap/scss/bootstrap';
+
 .content-container {
     display: flex;
     height: 2000px;
@@ -12,42 +14,50 @@
         border-left: none;
         border-top: none;
         border-bottom: none;
+        padding: 20px;
         width: 30%;
         height: 600px;
-        margin-top: 80px;
+        margin-top: 140px;
 
-        h3 {
+
+        .leftBar__container-box {
             display: flex;
-            align-items: center;
             justify-content: flex-start;
-            margin-left: 10px;
-            margin-top: 40px;
-        }
-
-        ul {
-            margin-top: 20px;
-            display: flex;
+            margin-top: 80px;
             flex-direction: column;
-            align-items: flex-start;
-            width: 400px;
-            height: 250px;
+            width: 350px !important;
+            height: 300px;
             border: 2px solid rgb(61, 60, 60);
             border-right: none;
             border-left: none;
 
+            h3 {
+                margin-top: 40px;
+                margin-left: 20px;
+            }
+
+            ul {
+                margin-top: 20px;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                width: 400px;
+                height: 250px;
+            }
+
             li {
                 display: flex;
-                align-items: center;
-                justify-content: flex-start;
                 border-radius: 15px;
                 font-weight: 750;
-                margin-top: 30px;
+                margin-top: 20px;
                 cursor: pointer;
+                list-style: none;
 
                 input {
                     width: 20px;
                     height: 20px;
                     margin-right: 10px;
+                    margin-top: 2px;
                 }
             }
         }
@@ -130,6 +140,29 @@
                     }
                 }
 
+                .product-object-button-remove {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin-top: 20px;
+                    width: 150px;
+                    height: 45px;
+                    background: red;
+                    cursor: pointer;
+                    color: white;
+                    border-style: none;
+                    border-radius: 20px;
+                    font-size: 16px;
+                    box-shadow: 0 0 3px 2px rgb(255, 255, 255);
+                    font-weight: 600;
+
+                    &:hover {
+                        background: rgb(229, 2, 2);
+                        transform: scale(0.9);
+                    }
+
+                }
+
                 .product__delete-icon {
                     position: relative;
                     display: flex;
@@ -151,7 +184,7 @@
     opacity: 0.2;
 }
 
-.content-popup{
+.content-popup {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -161,4 +194,40 @@
     background: rgb(243, 178, 26);
     width: 600px;
     height: 400px;
+}
+
+.toast-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .toast {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 150px !important;
+        width: 400px !important;
+        background-color: rgb(212, 171, 6);
+        color: #fff;
+        text-align: center;
+
+        .toast-header {
+            background-color: transparent;
+            border: none;
+            padding: 0;
+
+            .rounded {
+                margin-right: 5px;
+            }
+        }
+
+        .toast-body {
+            padding: 10px;
+        }
+    }
 }
