@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import data from '../../assets/data';
-import { setProductList } from '../configure/configure';
+import { setSelectedProductList } from '../configure/configure';
 import { setAmount } from '../configure/configure';
 import './index.scss';
 
@@ -11,8 +11,9 @@ function Content() {
   const [count, setCount] = useState(0);
 
   const input = useSelector((state) => state.inputValue.input);
-  const productList = useSelector((state) => state.productInfo.productList);
-  const productListArray = Array.isArray(productList) ? productList : [productList];
+  const selectedProductList = useSelector((state) => state.productInfo.selectedProductList);
+  const active = useSelector((state) => state.pageBlur.active)
+
 
   const dispatch = useDispatch();
 
@@ -20,11 +21,13 @@ function Content() {
     const categoryIndex = selectedCategories.indexOf(category);
     let updatedCategories = [...selectedCategories];
     if (categoryIndex > -1) {
-      // Category is already selected, remove it
+
       updatedCategories.splice(categoryIndex, 1);
+
     } else {
-      // Category is not selected, add it
+
       updatedCategories.push(category);
+
     }
     setSelectedCategories(updatedCategories);
 
@@ -45,8 +48,16 @@ function Content() {
     setCount(updatedCount);
     dispatch(setAmount(updatedCount));
 
-    const updatedProductList = [...productListArray, product];
-    dispatch(setProductList(updatedProductList));
+    const updatedProductList = [...selectedProductList, product];
+    console.log(updatedProductList)
+    dispatch(setSelectedProductList(updatedProductList));
+  };
+
+  const handleRemove = (product) => {
+    const updatedProductList = selectedCategories.filter(
+      (item) => item.title !== product.title
+    );
+    dispatch(setSelectedProductList(updatedProductList));
   };
 
   const filteredProducts = list.filter((product) =>
@@ -56,7 +67,7 @@ function Content() {
   const uniqueCategories = [...new Set(data.map((product) => product.category))];
 
   return (
-    <div className="content-container">
+    <div className={`content-container ${active ? 'content-blur' : ''}`}>
       <div className="leftBar__container">
         <h3>Ürün Çeşidi</h3>
         <ul>
@@ -83,12 +94,11 @@ function Content() {
                 <p>{product.price} TL</p>
               </div>
               <p>Son {product.rating.count} Adet </p>
-              <button
-                className="product__add-button"
-                onClick={() => handleClick(product)}
-              >
-                Add to basket
-              </button>
+              {selectedProductList.some((item) => item.title === product.title) ? (
+                <button className='product-object-button' onClick={() => handleRemove(product)}>Remove from basket</button>
+              ) : (
+                <button className='product-object-button' onClick={() => handleClick(product)}>Add to basket</button>
+              )}
             </div>
           </div>
         ))}

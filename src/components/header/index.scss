@@ -5,6 +5,8 @@
     background: rgb(255, 221, 0);
     height: 100px;
     justify-content: space-around;
+    position: absolute;
+    top: 0;
     color: white;
 
     .header-logo {
@@ -67,11 +69,11 @@
     align-items: center;
     justify-content: space-around;
     width: 500px;
-    height: 857px;
+    height: 789px;
     background: rgb(203, 203, 203);
     position: relative;
-    top: 378px;
-    left: 30px;
+    top: 680px;
+    left: 940px;
     z-index: 2;
     color: black;
 
@@ -88,13 +90,34 @@
 
         .basket-modal__list {
 
-            .basket-modal__list-amount{
+            .basket-modal__list-top {
+                display: flex;
+                margin-top: 10px;
+
+                p {
+                    margin-left: 20px;
+                }
+            }
+
+            .basket-modal__list-alt {
+                display: flex;
+                align-items: center;
+                margin-top: 20px;
+
+                .count-controls {
+                    margin-left: 80px;
+                }
+            }
+
+            .basket-modal__list-amount {
                 margin-top: 20px;
             }
-            img{
+
+            img {
                 width: 100px;
                 height: 100px;
             }
+
             button {
                 width: 60px;
                 height: 30px;
@@ -102,12 +125,13 @@
                 border-radius: 20px;
             }
 
-            .basket-modal__list-icon{
+            .basket-modal__list-icon {
                 cursor: pointer;
                 margin-left: 20px;
                 font-size: 30px;
                 color: red;
-                &:hover{
+
+                &:hover {
                     color: rgb(255, 54, 54);
                 }
             }
@@ -132,4 +156,8 @@
             background: rgb(255, 225, 73);
         }
     }
+}
+
+.header-blur {
+    opacity: 0.2;
 }

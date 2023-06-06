@@ -6,5 +6,6 @@ export const store = configureStore({
         inputValue: configure,
         amountValue: configure,
         productInfo: configure,
+        pageBlur:configure,
     },
 })

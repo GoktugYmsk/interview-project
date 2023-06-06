@@ -3,7 +3,8 @@ import { createSlice } from '@reduxjs/toolkit'
 const initialState = {
     input: '',
     amount: '0',
-    productList: {},
+    selectedProductList: [],
+    active: false,
 }
 
 export const configure = createSlice({
@@ -16,12 +17,15 @@ export const configure = createSlice({
         setAmount: (state, action) => {
             state.amount = action.payload;
         },
-        setProductList: (state, action) => {
-            state.productList = action.payload;
+        setSelectedProductList: (state, action) => {
+            state.selectedProductList = action.payload;
+        },
+        setActive: (state, action) => {
+            state.active = action.payload;
         }
     }
 })
 
-export const {setInput,setAmount,setProductList } = configure.actions
+export const {setInput,setAmount,setSelectedProductList,setActive } = configure.actions
 
 export default configure.reducer
