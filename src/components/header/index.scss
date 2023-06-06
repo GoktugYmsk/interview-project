@@ -49,6 +49,14 @@
             width: 30px;
             height: 30px;
         }
+        ul {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            width: 400px;
+            height: 250px;
+        }
 
         .header__icon {
             color: white;
@@ -85,16 +93,24 @@
         display: flex;
         flex-direction: column;
         height: 650px;
-        width: 400px;
+        width: 480px;
         overflow: auto;
+
+        padding: 20px;
 
         .basket-modal__list {
 
             .basket-modal__list-top {
+                background: white;
                 display: flex;
+                align-items: center;
+                padding: 20px;
+                justify-content: flex-start;
+                height: 140px;
                 margin-top: 10px;
 
                 p {
+                    margin-top: 30px;
                     margin-left: 20px;
                 }
             }
@@ -102,7 +118,7 @@
             .basket-modal__list-alt {
                 display: flex;
                 align-items: center;
-                margin-top: 20px;
+                margin-top: 10px;
 
                 .count-controls {
                     margin-left: 80px;
@@ -149,7 +165,7 @@
         color: white;
         background: rgb(255, 179, 0);
         border-radius: 20px;
-        margin-top: auto;
+        margin-top: 20px;
         margin-bottom: 20px;
 
         &:hover {

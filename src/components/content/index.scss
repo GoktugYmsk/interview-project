@@ -151,3 +151,14 @@
     opacity: 0.2;
 }
 
+.content-popup{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 200px;
+    left: 500px;
+    background: rgb(243, 178, 26);
+    width: 600px;
+    height: 400px;
+}

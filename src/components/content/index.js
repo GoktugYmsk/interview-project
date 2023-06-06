@@ -8,7 +8,7 @@ import './index.scss';
 function Content() {
   const [list, setList] = useState(data);
   const [selectedCategories, setSelectedCategories] = useState([]);
-  const [count, setCount] = useState(0);
+  const [popup, setPopup] = useState(false)
 
   const input = useSelector((state) => state.inputValue.input);
   const selectedProductList = useSelector((state) => state.productInfo.selectedProductList);
@@ -47,10 +47,17 @@ function Content() {
   const handleClick = (product) => {
     const updatedCount = amount + 1;
     dispatch(setAmount(updatedCount));
-
     const updatedProductList = [...selectedProductList, product];
-    console.log(updatedProductList)
     dispatch(setSelectedProductList(updatedProductList));
+
+    setPopup(true)
+
+    console.log('open popup', popup)
+    setTimeout(() => {
+      setPopup(false)
+      console.log('close popup', popup)
+    }, 5000);
+    console.log(popup)
   };
 
   const handleRemove = (product) => {
@@ -105,6 +112,11 @@ function Content() {
           </div>
         ))}
       </div>
+      {popup &&
+        <div className='content-popup' >
+          <p>Ürün sepete eklendi</p>
+        </div>
+      }
     </div>
   );
 }
