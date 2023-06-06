@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import data from '../../assets/data';
-import { RiDeleteBin5Fill } from 'react-icons/ri';
 import { setProductList } from '../configure/configure';
 import { setAmount } from '../configure/configure';
 import './index.scss';

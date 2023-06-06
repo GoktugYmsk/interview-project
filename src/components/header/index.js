@@ -1,9 +1,10 @@
 import React, { useRef, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { RiDeleteBin5Fill } from 'react-icons/ri';
 import { FaShoppingBasket } from 'react-icons/fa';
 import { HiOutlineSearch } from 'react-icons/hi';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { setProductList } from '../configure/configure';
 import { setInput } from '../configure/configure';
@@ -43,18 +44,17 @@ function Header() {
     const handleModalClose = () => {
         setActive(false);
     };
-    
+
     const handleAddToProduct = (productId) => {
         const updatedProductList = productListArray.map((product) => {
-          if (product.id === productId) {
-            return { ...product, count: product.count + 1 };
-          }
-          return product;
+            if (product.id === productId) {
+                return { ...product, count: product.count + 1 };
+            }
+            return product;
         });
-      
+
         dispatch(setProductList(updatedProductList));
-      };
-      
+    };
 
     const getProductCount = (productId) => {
         const productCount = productListArray.reduce((count, product) => {
@@ -74,6 +74,34 @@ function Header() {
         }
         return uniqueList;
     }, []);
+
+    const handleDeleteProduct = (productId) => {
+        const updatedProductList = productListArray.filter((product) => product.id !== productId);
+        dispatch(setProductList(updatedProductList));
+    };
+
+    const handleIncrementCount = (productId) => {
+        const updatedProductList = productListArray.map((product) => {
+          if (product.id === productId) {
+            return { ...product, count: product.count + 1 };
+          }
+          return product;
+        });
+      
+        dispatch(setProductList(updatedProductList));
+      };
+      
+      const handleDecrementCount = (productId) => {
+        const updatedProductList = productListArray.map((product) => {
+          if (product.id === productId && product.count > 0) {
+            return { ...product, count: product.count - 1 };
+          }
+          return product;
+        });
+      
+        dispatch(setProductList(updatedProductList));
+      };
+      
 
     return (
         <>
@@ -95,7 +123,7 @@ function Header() {
                 </div>
                 {!active && (
                     <div onClick={handleBasketClick} className="header__basket">
-                        Sepetim
+                        Basket
                         <p className="header__amount">{amount}</p>
                         <FaShoppingBasket className="header__icon" />
                     </div>
@@ -107,16 +135,21 @@ function Header() {
                             {uniqueProductList.map((product, index) => (
                                 <div key={index} className="basket-modal__list">
                                     <p>{product.title}</p>
+                                    <img src={product.image} alt={product.title} />
                                     <p>Adet: {product.count}</p>
-                                    <button onClick={() => handleAddToProduct(product.id)}>
-                                        ekle
-                                    </button>
-
+                                    <div className="count-controls">
+                                        <button onClick={() => handleDecrementCount(product.id)}>-</button>
+                                        <button onClick={() => handleIncrementCount(product.id)}>+</button>
+                                        <RiDeleteBin5Fill
+                                            className="basket-modal__list-icon"
+                                            onClick={() => handleDeleteProduct(product.id)}
+                                        />
+                                    </div>
                                 </div>
                             ))}
                         </div>
                         <button onClick={handleModalClose} className="basket-model__close">
-                            Alışverişe devam et
+                            Keep Shopping
                         </button>
                     </div>
                 )}
