@@ -7,7 +7,7 @@ import './index.scss';
 
 function Content() {
   const [list, setList] = useState(data);
-  const [selectedCategory, setSelectedCategory] = useState('');
+  const [selectedCategories, setSelectedCategories] = useState([]);
   const [count, setCount] = useState(0);
 
   const input = useSelector((state) => state.inputValue.input);
@@ -17,11 +17,21 @@ function Content() {
   const dispatch = useDispatch();
 
   const filterProducts = (category) => {
-    setSelectedCategory(category);
-    if (category) {
+    const categoryIndex = selectedCategories.indexOf(category);
+    let updatedCategories = [...selectedCategories];
+    if (categoryIndex > -1) {
+      // Category is already selected, remove it
+      updatedCategories.splice(categoryIndex, 1);
+    } else {
+      // Category is not selected, add it
+      updatedCategories.push(category);
+    }
+    setSelectedCategories(updatedCategories);
+
+    if (updatedCategories.length > 0) {
       const filteredList = data.filter(
         (product) =>
-          product.category === category &&
+          updatedCategories.includes(product.category) &&
           product.title.toLowerCase().includes(input.toLowerCase())
       );
       setList(filteredList);
@@ -38,7 +48,7 @@ function Content() {
     const updatedProductList = [...productListArray, product];
     dispatch(setProductList(updatedProductList));
   };
-  
+
   const filteredProducts = list.filter((product) =>
     product.title.toLowerCase().includes(input.toLowerCase())
   );
@@ -52,6 +62,11 @@ function Content() {
         <ul>
           {uniqueCategories.map((option, index) => (
             <li key={index} onClick={() => filterProducts(option)}>
+              <input
+                type="checkbox"
+                checked={selectedCategories.includes(option)}
+                readOnly
+              />
               {option}
             </li>
           ))}
@@ -67,12 +82,14 @@ function Content() {
                 <hr className="product-object__hr" />
                 <p>{product.price} TL</p>
               </div>
+              <p>Son {product.rating.count} Adet </p>
               <button
                 className="product__add-button"
                 onClick={() => handleClick(product)}
               >
                 Add to basket
               </button>
+              <button>Remove to basket</button>
             </div>
           </div>
         ))}
