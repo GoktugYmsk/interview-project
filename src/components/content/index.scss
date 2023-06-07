@@ -4,6 +4,7 @@
     display: flex;
     height: 2000px;
     width: 100%;
+    
 
     .leftBar__container {
         display: flex;
@@ -15,8 +16,8 @@
         border-top: none;
         border-bottom: none;
         padding: 20px;
-        width: 30%;
-        height: 600px;
+        width: 500px;
+        height: 80%;
         margin-top: 140px;
 
 
@@ -25,7 +26,7 @@
             justify-content: flex-start;
             margin-top: 80px;
             flex-direction: column;
-            width: 350px !important;
+            width: 100% !important;
             height: 300px;
             border: 2px solid rgb(61, 60, 60);
             border-right: none;
@@ -33,7 +34,7 @@
 
             h3 {
                 margin-top: 40px;
-                margin-left: 20px;
+                margin-left: 30px;
             }
 
             ul {
@@ -68,14 +69,16 @@
         display: flex;
         align-items: center;
         padding: 20px;
-        width: 1200px;
+        width: 100%;
         overflow: auto;
 
         .product-container {
+            display: flex;
+            margin-top: 120px;
             .product-object {
                 display: flex;
                 align-items: center;
-                justify-content: flex-end;
+                justify-content: flex-start;
                 flex-direction: column;
                 padding: 10px;
                 width: 300px;
@@ -95,6 +98,7 @@
 
                     h4 {
                         display: flex;
+                        font-size: 20px;
                         margin-top: 10px;
                     }
 
@@ -122,7 +126,7 @@
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    margin-top: 20px;
+                    margin-top: 30px;
                     width: 150px;
                     height: 45px;
                     background: rgb(247, 213, 62);
@@ -229,5 +233,11 @@
         .toast-body {
             padding: 10px;
         }
+    }
+}
+
+@media screen and (max-width: 540px) {
+    .content-container{
+        display: none;
     }
 }

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Toast from 'react-bootstrap/Toast';
+import { Row, Col } from 'react-bootstrap';
 import data from '../../assets/data';
 import { setSelectedProductList } from '../configure/configure';
 import { setAmount } from '../configure/configure';
@@ -36,8 +37,7 @@ function Content() {
     const updatedCount = amount - 1;
     dispatch(setAmount(updatedCount));
     const updatedProductList = selectedProductList.filter(
-      (item) => item.title !== product.title
-    );
+      (item) => item.title !== product.title);
     dispatch(setSelectedProductList(updatedProductList));
   };
 
@@ -85,7 +85,7 @@ function Content() {
       </div>
       {popup && (
         <div className="toast-container">
-          <Toast onClose={handleClose} >
+          <Toast onClose={handleClose}  >
             <Toast.Header>
               <img src="holder.js/20x20?text=%20" className="rounded me-2" alt="" />
             </Toast.Header>
