@@ -77,7 +77,7 @@ function Content({list}) {
                 <hr className="product-object__hr" />
                 <p>{product.price} $</p>
               </div>
-              <p>Son {product.rating.count} Adet </p>
+              <p>last {product.rating.count} Pieces  </p>
               {(isMobile || hoveredIndex === index) &&
                 (selectedProductList.some((item) => item.title === product.title) ? (
                   <button className="product-object-button-remove" onClick={() => handleRemove(product)}>

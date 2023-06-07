@@ -1,11 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { FaShoppingBasket } from 'react-icons/fa';
 import { HiOutlineSearch } from 'react-icons/hi';
 import { setIsMenuOpen } from '../configure/configure';
-import { Row, Col } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Basket from './basket';
 import { setSelectedProductList, setInput, setActive } from '../configure/configure';
@@ -61,33 +60,34 @@ function Header() {
     return (
         <>
             <div className={`header-container ${active ? 'header-blur' : ''}`}>
-                        <img className="header-logo" src={logo} />
-                        <div className="input-group">
-                            <input
-                                ref={inputRef}
-                                onBlur={handleInputBlur}
-                                onChange={(e) => handleChange(e)}
-                                placeholder="Search"
-                                type="text"
-                                className="form-control"
-                                aria-label="Dollar amount (with dot and two decimal places)"
-                            />
-                            <span className="input-group-text">
-                                <HiOutlineSearch onClick={handleIconClick} />
-                            </span>
-                        </div>
-                        <div className="leftBar__menuToggle" onClick={handleMenuToggle}>
-                            <div className="leftBar__menuToggle-line"></div>
-                            <div className="leftBar__menuToggle-line"></div>
-                            <div className="leftBar__menuToggle-line"></div>
-                        </div>
-                        {!active && (
-                            <div onClick={handleBasketClick} className="header__basket">
-                                <p className='header__basket-title' >Basket</p>
-                                <p className="header__amount">{amount}</p>
-                                <FaShoppingBasket className="header__icon" />
-                            </div>
-                        )}
+                <div className="leftBar__menuToggle" onClick={handleMenuToggle}>
+                    <div className="leftBar__menuToggle-line"></div>
+                    <div className="leftBar__menuToggle-line"></div>
+                    <div className="leftBar__menuToggle-line"></div>
+                </div>
+                <img className="header-logo" src={logo} />
+                <div className="input-group">
+                    <input
+                        ref={inputRef}
+                        onBlur={handleInputBlur}
+                        onChange={(e) => handleChange(e)}
+                        placeholder="Search"
+                        type="text"
+                        className="form-control"
+                        aria-label="Dollar amount (with dot and two decimal places)"
+                    />
+                    <span className="input-group-text">
+                        <HiOutlineSearch onClick={handleIconClick} />
+                    </span>
+                </div>
+
+                {!active && (
+                    <div onClick={handleBasketClick} className="header__basket">
+                        <p className='header__basket-title' >Basket</p>
+                        <p className="header__amount">{amount}</p>
+                        <FaShoppingBasket className="header__icon" />
+                    </div>
+                )}
             </div>
             <Basket />
         </>
