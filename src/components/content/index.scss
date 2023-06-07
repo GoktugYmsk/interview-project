@@ -157,6 +157,7 @@
     .content-container {
         display: flex;
         flex-direction: column;
+        height: 700px;
     }
 
     .leftBar__container {
@@ -170,20 +171,16 @@
     .product-list {
         display: flex;
         flex-direction: column;
-        align-items: center;
         width: 100% !important;
     }
 
     .product-container {
         display: flex;
-        align-items: flex-start;
+        align-items: center;
         justify-content: flex-start !important;
         flex-direction: column;
         margin-top: 20px !important;
         width: 100%;
 
-        .product-object {
-            margin-right: 80px;
-        }
     }
 }

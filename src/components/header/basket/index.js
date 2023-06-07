@@ -90,7 +90,7 @@ function Basket() {
 
     return (
         <>
-            {active && (
+        {active && (
                 <div className="basket-modal" ref={wrapperRef}>
                     <h2>My Basket</h2>
                     {selectedProductList.length > 0 ? (
