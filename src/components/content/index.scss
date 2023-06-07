@@ -127,7 +127,6 @@
 }
 
 .content-blur {
-    display: none;
     opacity: 0.2;
 }
 
@@ -161,16 +160,15 @@
         height: 700px;
     }
 
-    .prodcut-list__none {
-        display: none;
-    }
+.prodcut-list__none{
+    display: none;
+}
 
     .leftBar__container {
         display: none;
         margin: 0 !important;
     }
-
-    .open {
+    .open{
         display: flex;
     }
 
@@ -189,8 +187,7 @@
         width: 100%;
 
     }
-
-    .product-object-button-remove {
+    .product-object-button-remove{
         display: flex;
         position: relative;
         bottom: 30px;

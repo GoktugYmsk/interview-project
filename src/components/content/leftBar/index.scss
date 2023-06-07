@@ -58,8 +58,9 @@
       animation: slideIn 0.5s ease-in-out;
     }
   }
+
   @media screen and (max-width: 540px) {
-    
+
     .leftBar__container-box {
       border: none !important;
       margin-top: 0;
@@ -87,9 +88,12 @@
         transform: translateY(0);
       }
     }
-  }
-}
 
-.leftBar__content-none{
-  display: none;
+    .leftBar__content-none {
+      display: none;
+    }
+  }
+
+
+
 }
