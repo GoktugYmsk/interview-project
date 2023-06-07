@@ -151,6 +151,14 @@
 
 }
 
+@media screen and (max-width: 380px) {
+    .header__basket {
+        display: flex;
+        position: relative;
+        right: 20px;
+    }
+}
+
 @media screen and (max-width: 768px) {
 
     .input-group {

@@ -11,7 +11,7 @@ import './index.scss';
 
 function Header() {
     const [isInputFocused, setIsInputFocused] = useState(false);
-    const dispatch = useDispatch();
+    const dispatch = useDispatch()
     const inputRef = useRef(null);
 
     const selectedProductList = useSelector((state) => state.productInfo.selectedProductList);
@@ -50,11 +50,9 @@ function Header() {
         setSelectedProductList(prepareProductList)
     }, [selectedProductList])
 
-
     const handleMenuToggle = () => {
         dispatch(setIsMenuOpen(!isMenuOpen))
     };
-
 
     return (
         <>

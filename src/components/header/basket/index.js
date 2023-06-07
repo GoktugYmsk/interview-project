@@ -2,19 +2,20 @@ import React, { useEffect, useRef, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { RiDeleteBin5Fill } from 'react-icons/ri';
-import { div, Col } from 'react-bootstrap';
+import { Col } from 'react-bootstrap';
 
 import { setSelectedProductList, setActive, setAmount } from '../../configure/configure';
 import './index.scss'
 
 function Basket() {
-    const active = useSelector((state) => state.pageBlur.active);
-    const selectedProductList = useSelector((state) => state.productInfo.selectedProductList);
+    const [productCounts, setProductCounts] = useState({});
+    const [showWarning, setShowWarning] = useState(false);
     const dispatch = useDispatch();
     const wrapperRef = useRef(null);
-    const [productCounts, setProductCounts] = useState({});
+
+    const active = useSelector((state) => state.pageBlur.active);
+    const selectedProductList = useSelector((state) => state.productInfo.selectedProductList);
     const amount = useSelector((state) => state.amountValue.amount);
-    const [showWarning, setShowWarning] = useState(false);
 
     const handleDeleteProduct = (productId) => {
         const updatedProductList = selectedProductList.filter(
@@ -34,7 +35,6 @@ function Basket() {
             ...prevCounts,
             [productId]: parsedValue,
         }));
-        const previousCount = productCounts[productId] || 0;
     };
 
     const handleDecrementCount = (productId) => {
@@ -87,10 +87,9 @@ function Basket() {
         setShowWarning(exceedsRating);
     }, [selectedProductList, productCounts]);
 
-
     return (
         <>
-        {active && (
+            {active && (
                 <div className="basket-modal" ref={wrapperRef}>
                     <h2>My Basket</h2>
                     {selectedProductList.length > 0 ? (
