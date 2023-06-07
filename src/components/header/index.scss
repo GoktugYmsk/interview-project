@@ -38,6 +38,9 @@
         background: rgb(236, 204, 0);
         font-weight: 600;
 
+        .header__basket-title{
+            margin-top: 20px;
+        }
         .header__amount {
             display: flex;
             align-items: center;
@@ -73,118 +76,24 @@
 
 }
 
-.basket-modal {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    width: 500px;
-    height: 100%;
-    background: rgb(203, 203, 203);
-    position: absolute;
-    right: 0;
-    z-index: 2;
-    color: black;
-
-    h2 {
-        margin-top: 20px;
-    }
-
-    .basket-modal__box {
-        display: flex;
-        flex-direction: column;
-        height: 650px;
-        width: 480px;
-        overflow: auto;
-
-        padding: 20px;
-
-        .basket-modal__list {
-
-            .basket-modal__list-top {
-                background: white;
-                display: flex;
-                align-items: center;
-                padding: 20px;
-                justify-content: flex-start;
-                height: 140px;
-                margin-top: 10px;
-
-                p {
-                    margin-top: 30px;
-                    margin-left: 20px;
-                }
-            }
-
-            .basket-modal__list-alt {
-                display: flex;
-                align-items: center;
-                margin-top: 10px;
-
-                input {
-                    width: 80px;
-                    height: 30px;
-                }
-
-                .count-controls {
-                    margin-left: 30px;
-                }
-            }
-
-            .basket-modal__list-amount {
-                margin-top: 20px;
-            }
-
-            img {
-                width: 100px;
-                height: 100px;
-            }
-
-            button {
-                width: 60px;
-                height: 30px;
-                border-style: none;
-                border-radius: 20px;
-            }
-
-            .basket-modal__list-icon {
-                cursor: pointer;
-                margin-left: 20px;
-                font-size: 30px;
-                color: red;
-
-                &:hover {
-                    color: rgb(255, 54, 54);
-                }
-            }
-
-        }
-    }
-
-
-    .basket-model__close {
-        cursor: pointer;
-        border-style: none;
-        width: 160px;
-        height: 60px;
-        font-weight: 750;
-        color: white;
-        background: rgb(255, 179, 0);
-        border-radius: 20px;
-        margin-top: 20px;
-        margin-bottom: 20px;
-
-        &:hover {
-            background: rgb(255, 225, 73);
-        }
-    }
-}
-
 .header-blur {
     opacity: 0.2;
 }
 
 @media screen and (max-width: 540px) {
+    .header__basket{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 10px;
+
+        .header__icon{
+            margin-right: 20px;
+        }
+    }
+    .header__basket-title{
+        display: none   ;
+    }
     .input-group {
         display: none;
         .form-control{

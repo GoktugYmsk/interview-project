@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+
 import { useDispatch, useSelector } from 'react-redux';
 import Toast from 'react-bootstrap/Toast';
-import { Row, Col } from 'react-bootstrap';
+
 import data from '../../assets/data';
 import { setSelectedProductList } from '../configure/configure';
 import { setAmount } from '../configure/configure';
@@ -10,34 +11,31 @@ import './index.scss';
 
 function Content() {
   const [list, setList] = useState(data);
-
   const [popup, setPopup] = useState(false);
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const dispatch = useDispatch();
-
   const input = useSelector((state) => state.inputValue.input);
   const selectedProductList = useSelector((state) => state.productInfo.selectedProductList);
   const active = useSelector((state) => state.pageBlur.active);
   const amount = useSelector((state) => state.amountValue.amount);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 540);
 
   const handleClick = (product) => {
     const updatedCount = amount + 1;
     dispatch(setAmount(updatedCount));
     const updatedProductList = [...selectedProductList, product];
     dispatch(setSelectedProductList(updatedProductList));
-
     setPopup(true);
   };
-  
-  const handleClose = () =>{
-    setPopup(false)
-  }
+
+  const handleClose = () => {
+    setPopup(false);
+  };
 
   const handleRemove = (product) => {
     const updatedCount = amount - 1;
     dispatch(setAmount(updatedCount));
-    const updatedProductList = selectedProductList.filter(
-      (item) => item.title !== product.title);
+    const updatedProductList = selectedProductList.filter((item) => item.title !== product.title);
     dispatch(setSelectedProductList(updatedProductList));
   };
 
@@ -53,9 +51,22 @@ function Content() {
     setHoveredIndex(null);
   };
 
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 540);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   return (
     <div className={`content-container ${active ? 'content-blur' : ''}`}>
       <LeftBar setList={setList} />
+
       <div className="product-list">
         {filteredProducts.map((product, index) => (
           <div
@@ -72,24 +83,27 @@ function Content() {
                 <p>{product.price} $</p>
               </div>
               <p>Son {product.rating.count} Adet </p>
-              {hoveredIndex === index && (
-                selectedProductList.some((item) => item.title === product.title) ? (
-                  <button className='product-object-button-remove' onClick={() => handleRemove(product)}>Remove from basket</button>
+              {(isMobile || hoveredIndex === index) &&
+                (selectedProductList.some((item) => item.title === product.title) ? (
+                  <button className="product-object-button-remove" onClick={() => handleRemove(product)}>
+                    <p>Remove from basket</p>
+                  </button>
                 ) : (
-                  <button className='product-object-button' onClick={() => handleClick(product)}>Add to basket</button>
-                )
-              )}
+                  <button className="product-object-button" onClick={() => handleClick(product)}>
+                    <p>Add to basket</p>
+                  </button>
+                ))}
             </div>
           </div>
         ))}
       </div>
       {popup && (
         <div className="toast-container">
-          <Toast onClose={handleClose}  >
+          <Toast onClose={handleClose} show={popup}>
             <Toast.Header>
               <img src="holder.js/20x20?text=%20" className="rounded me-2" alt="" />
             </Toast.Header>
-            <Toast.Body>Product added to cart</Toast.Body>
+            <Toast.Body>Product successfully added to cart</Toast.Body>
           </Toast>
         </div>
       )}

@@ -1,7 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { RiDeleteBin5Fill } from 'react-icons/ri';
+
 import { setSelectedProductList, setActive, setAmount } from '../../configure/configure';
+import './index.scss'
 
 function Basket() {
     const active = useSelector((state) => state.pageBlur.active);
@@ -14,14 +17,12 @@ function Basket() {
 
     const handleDeleteProduct = (productId) => {
         const updatedProductList = selectedProductList.filter(
-            (product) => product.id !== productId
+          (product) => product.id !== productId
         );
         dispatch(setSelectedProductList(updatedProductList));
-
-        const deletedProductCount = productCounts[productId] || 0;
-        dispatch(setAmount(amount - deletedProductCount));
-    };
-
+        dispatch(setAmount(amount  - 1));
+      };
+      
     const handleModalClose = () => {
         dispatch(setActive(false));
     };
@@ -33,8 +34,6 @@ function Basket() {
             [productId]: parsedValue,
         }));
         const previousCount = productCounts[productId] || 0;
-        const updatedAmount = amount - previousCount + parsedValue;
-        dispatch(setAmount(updatedAmount < 0 ? 0 : updatedAmount));
     };
 
     const handleDecrementCount = (productId) => {
@@ -44,7 +43,6 @@ function Basket() {
             ...prevCounts,
             [productId]: newCount,
         }));
-        dispatch(setAmount(amount - 1 < 0 ? 0 : amount - 1));
     };
 
     const handleIncrementCount = (productId) => {
@@ -54,7 +52,6 @@ function Basket() {
             ...prevCounts,
             [productId]: newCount,
         }));
-        dispatch(setAmount(amount + 1));
     };
 
     useEffect(() => {
@@ -80,7 +77,6 @@ function Basket() {
     }, [dispatch]);
 
     useEffect(() => {
-        // Check if any count exceeds the rating count
         const exceedsRating = selectedProductList.some((product) => {
             const ratingCount = product.rating.count;
             const currentCount = productCounts[product.id] || 0;
@@ -95,7 +91,7 @@ function Basket() {
         <>
             {active && (
                 <div className="basket-modal" ref={wrapperRef}>
-                    <h2>Sepetim</h2>
+                    <h2>My Basket</h2>
                     {selectedProductList.length > 0 ? (
                         <div className="basket-modal__box">
                             {selectedProductList.map((product, index) => (
@@ -106,7 +102,7 @@ function Basket() {
                                     </div>
                                     <div className="basket-modal__list-alt">
                                         <p className="basket-modal__list-amount">
-                                            Adet:{' '}
+                                        Amount:{' '}
                                             <input
                                                 type="number"
                                                 min="0"
@@ -130,14 +126,15 @@ function Basket() {
                             ))}
                         </div>
                     ) : (
-                        <p>sepetiniz boş</p>
+                        <p>Your cart is empty</p>
                     )}
                     <button onClick={handleModalClose} className="basket-model__close">
-                        Alışverişe Devam Et
+                    Keep Shopping
                     </button>
                 </div>
             )}
         </>
     );
 }
+
 export default Basket;
