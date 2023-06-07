@@ -8,8 +8,8 @@ import './index.scss'
 
 function LeftBar({ setList }) {
   const [selectedCategories, setSelectedCategories] = useState([]);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const input = useSelector((state) => state.inputValue.input);
+  const isMenuOpen = useSelector((state) => state.menuOpen.isMenuOpen);
   const productCategories = [...new Set(data.map((product) => product.category))];
 
   const filterProducts = (category) => {
@@ -34,19 +34,8 @@ function LeftBar({ setList }) {
     }
   };
 
-  const handleMenuToggle = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
   return (
-    <Row>
-      <Col >
         <div className={`leftBar__container ${isMenuOpen ? 'open' : ''}`}>
-          <div className="leftBar__menuToggle" onClick={handleMenuToggle}>
-            <div className="leftBar__menuToggle-line"></div>
-            <div className="leftBar__menuToggle-line"></div>
-            <div className="leftBar__menuToggle-line"></div>
-          </div>
           <div className="leftBar__content">
             <div className="leftBar__container-box">
               <h3>Product Assortment</h3>
@@ -65,8 +54,6 @@ function LeftBar({ setList }) {
             </div>
           </div>
         </div>
-      </Col>
-    </Row>
   );
 }
 

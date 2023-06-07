@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { FaShoppingBasket } from 'react-icons/fa';
 import { HiOutlineSearch } from 'react-icons/hi';
+import { setIsMenuOpen } from '../configure/configure';
 
 import Basket from './basket';
 import { setSelectedProductList, setInput, setActive } from '../configure/configure';
@@ -17,6 +18,7 @@ function Header() {
     const selectedProductList = useSelector((state) => state.productInfo.selectedProductList);
     const amount = useSelector((state) => state.amountValue.amount);
     const active = useSelector((state) => state.pageBlur.active)
+    const isMenuOpen = useSelector((state) => state.menuOpen.isMenuOpen);
 
     const logo =
         'https://uploads-ssl.webflow.com/605c9d764f1ef938a009ac98/61e01bfbdd8632a72962edc2_Pinsoft_Yatay_Logo_mavi-for%20animation.svg';
@@ -49,6 +51,12 @@ function Header() {
         setSelectedProductList(prepareProductList)
     }, [selectedProductList])
 
+
+    const handleMenuToggle = () => {
+        dispatch(setIsMenuOpen(!isMenuOpen))
+    };
+
+
     return (
         <>
             <div className={`header-container ${active ? 'header-blur' : ''}`}>
@@ -66,6 +74,11 @@ function Header() {
                     <span className="input-group-text">
                         <HiOutlineSearch onClick={handleIconClick} />
                     </span>
+                </div>
+                <div className="leftBar__menuToggle" onClick={handleMenuToggle}>
+                    <div className="leftBar__menuToggle-line"></div>
+                    <div className="leftBar__menuToggle-line"></div>
+                    <div className="leftBar__menuToggle-line"></div>
                 </div>
                 {!active && (
                     <div onClick={handleBasketClick} className="header__basket">

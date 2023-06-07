@@ -66,7 +66,6 @@ function Content() {
   return (
     <div className={`content-container ${active ? 'content-blur' : ''}`}>
       <LeftBar setList={setList} />
-
       <div className="product-list">
         {filteredProducts.map((product, index) => (
           <div

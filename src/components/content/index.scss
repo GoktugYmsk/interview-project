@@ -28,7 +28,7 @@
                 border-radius: 20px;
                 margin-left: 100px;
                 background: white;
-                height: 540px;
+                height: 480px;
 
                 &:hover {
                     box-shadow: 0 0 4px 4px rgb(114, 114, 114);
@@ -44,7 +44,7 @@
 
                     h4 {
                         display: flex;
-                        font-size: 19px;
+                        font-size: 16px;
                         margin-top: 10px;
                     }
 
@@ -70,7 +70,6 @@
 
                 .product-object-button {
                     display: flex;
-                    margin-top: 30px;
                     background: rgb(247, 213, 62);
                     cursor: pointer;
                     color: white;
@@ -158,12 +157,24 @@
 }
 
 @media screen and (max-width: 540px) {
+    .content-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .leftBar__container {
+        display: none;
+        margin: 0 !important;
+    }
+    .open{
+        display: flex;
+    }
+
     .product-list {
         display: flex;
         flex-direction: column;
         align-items: center;
         width: 100% !important;
-        justify-content: flex-start;
     }
 
     .product-container {
@@ -171,7 +182,7 @@
         align-items: flex-start;
         justify-content: flex-start !important;
         flex-direction: column;
-        margin-top: 0;
+        margin-top: 20px !important;
         width: 100%;
 
         .product-object {

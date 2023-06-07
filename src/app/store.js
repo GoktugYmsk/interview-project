@@ -7,5 +7,6 @@ export const store = configureStore({
         amountValue: configure,
         productInfo: configure,
         pageBlur:configure,
+        menuOpen:configure,
     },
 })

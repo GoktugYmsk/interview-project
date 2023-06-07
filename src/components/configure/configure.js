@@ -5,6 +5,7 @@ const initialState = {
     amount: 0,
     selectedProductList: [],
     active: false,
+    isMenuOpen: false,
 }
 
 export const configure = createSlice({
@@ -22,10 +23,13 @@ export const configure = createSlice({
         },
         setActive: (state, action) => {
             state.active = action.payload;
+        },
+        setIsMenuOpen: (state, action) => {
+            state.isMenuOpen = action.payload;
         }
     }
 })
 
-export const {setInput,setAmount,setSelectedProductList,setActive } = configure.actions
+export const {setInput,setAmount,setSelectedProductList,setActive,setIsMenuOpen } = configure.actions
 
 export default configure.reducer
