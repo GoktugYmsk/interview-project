@@ -1,17 +1,15 @@
 .header-container {
     display: flex;
     align-items: center;
-    width: 100%;
     background: rgb(255, 221, 0);
     height: 100px;
-    justify-content: space-around;
-    position: relative;
+    justify-content: space-between;
+    padding: 30px;
     top: 0;
     color: white;
 
     .header-logo {
         display: flex;
-        width: 300px;
         height: 60px;
     }
 
@@ -31,8 +29,8 @@
         align-items: center;
         justify-content: center;
         cursor: pointer;
-        width: 220px;
         height: 82px;
+        padding: 10px;
         border-radius: 10px;
         background: rgb(236, 204, 0);
         font-weight: 600;
@@ -107,11 +105,15 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-right: 10px;
+        margin-left: 100px;
+        width: 120px;
 
         .header__icon {
             margin-right: 20px;
         }
+    }
+    .header-logo{
+        width: 120px;
     }
 
     .header__basket-title {
@@ -131,10 +133,12 @@
     }
 
     .leftBar__menuToggle {
+        display: flex;
+        margin-left: 0 !important;
+        margin-right: 30px !important;
         border-radius: 0 8px 8px 0;
         z-index: 2;
-        margin-left: 10px;
-        display: flex;
+        top: 20px;
 
         .leftBar__menuToggle-line{
             width: 30px;

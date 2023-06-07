@@ -2,9 +2,7 @@
 
 .content-container {
     display: flex;
-    height: 2000px;
-    width: 100%;
-    overflow: auto;
+    margin-top: 100px;
 
     .product-list {
         display: flex;
@@ -16,7 +14,6 @@
         .product-container {
             display: flex;
             align-items: center;
-            margin-top: 120px;
 
             .product-object {
                 display: flex;

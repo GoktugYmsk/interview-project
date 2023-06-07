@@ -7,12 +7,13 @@
   border-left: none;
   border-top: none;
   border-bottom: none;
+  margin-top: 100px;
   padding: 20px;
 
   .leftBar__container-box {
     display: flex;
     justify-content: flex-start;
-    margin-top: 80px;
+    margin-top: 20px;
     flex-direction: column;
     height: 300px;
     border: 2px solid rgb(161, 159, 159);

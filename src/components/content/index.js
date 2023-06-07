@@ -3,14 +3,11 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Toast from 'react-bootstrap/Toast';
 
-import data from '../../assets/data';
 import { setSelectedProductList } from '../configure/configure';
 import { setAmount } from '../configure/configure';
-import LeftBar from './leftBar';
 import './index.scss';
 
-function Content() {
-  const [list, setList] = useState(data);
+function Content({list}) {
   const [popup, setPopup] = useState(false);
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const dispatch = useDispatch();
@@ -65,7 +62,6 @@ function Content() {
 
   return (
     <div className={`content-container ${active ? 'content-blur' : ''}`}>
-      <LeftBar setList={setList} />
       <div className="product-list">
         {filteredProducts.map((product, index) => (
           <div
