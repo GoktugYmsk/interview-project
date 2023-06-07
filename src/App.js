@@ -7,6 +7,7 @@ import { Row, Col } from 'react-bootstrap';
 import Header from './components/header';
 import LeftBar from './components/content/leftBar';
 import Content from './components/content';
+import Basket from './components/header/basket';
 import './App.css';
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
           <Content list={list} />
         </Col>
       </Row>
+      <Basket />
     </div>
   );
 }

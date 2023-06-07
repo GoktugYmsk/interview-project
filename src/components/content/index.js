@@ -62,7 +62,7 @@ function Content({list}) {
 
   return (
     <div className={`content-container ${active ? 'content-blur' : ''}`}>
-      <div className="product-list">
+      <div className={`product-list ${active ? 'prodcut-list__none' : ''}`}>
         {filteredProducts.map((product, index) => (
           <div
             key={index}

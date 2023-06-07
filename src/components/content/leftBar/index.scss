@@ -58,9 +58,6 @@
       animation: slideIn 0.5s ease-in-out;
     }
   }
-
-
-
   @media screen and (max-width: 540px) {
     
     .leftBar__container-box {
@@ -91,4 +88,8 @@
       }
     }
   }
+}
+
+.leftBar__content-none{
+  display: none;
 }

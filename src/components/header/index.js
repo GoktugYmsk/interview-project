@@ -6,7 +6,6 @@ import { HiOutlineSearch } from 'react-icons/hi';
 import { setIsMenuOpen } from '../configure/configure';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import Basket from './basket';
 import { setSelectedProductList, setInput, setActive } from '../configure/configure';
 import './index.scss';
 
@@ -89,7 +88,6 @@ function Header() {
                     </div>
                 )}
             </div>
-            <Basket />
         </>
     );
 }
