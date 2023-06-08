@@ -2,8 +2,9 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 
 import { setAmount,setSelectedProductList } from '../../../configure/configure';
+import './index.scss'
 
-function ProductContainer({ product, index,isMobile,setPopup  }) {
+function ProductCart({ product, index,isMobile,setPopup  }) {
     const [hoveredIndex, setHoveredIndex] = useState(null);
     
     const selectedProductList = useSelector((state) => state.productInfo.selectedProductList);
@@ -64,4 +65,4 @@ function ProductContainer({ product, index,isMobile,setPopup  }) {
     )
 }
 
-export default ProductContainer
+export default ProductCart

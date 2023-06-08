@@ -8,7 +8,7 @@ import './index.scss';
 
 function Content({ list }) {
   const [popup, setPopup] = useState(false);
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 540);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
   const active = useSelector((state) => state.pageBlur.active);
 
@@ -18,7 +18,7 @@ function Content({ list }) {
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth <= 540);
+      setIsMobile(window.innerWidth <= 768);
     };
     window.addEventListener('resize', handleResize);
 

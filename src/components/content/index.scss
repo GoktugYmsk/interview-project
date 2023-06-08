@@ -31,7 +31,6 @@
                     box-shadow: 0 0 4px 4px rgb(114, 114, 114);
                 }
 
-
                 .product-object__list {
                     display: flex;
                     flex-direction: column;
@@ -197,4 +196,11 @@
     .content-blur {
         display: none;
     }
+}
+
+@media screen  and (max-width: 768px) {
+    .content-blur{
+        display: none;
+    }
+    
 }
