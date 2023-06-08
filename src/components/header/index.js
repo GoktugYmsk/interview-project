@@ -3,10 +3,9 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { FaShoppingBasket } from 'react-icons/fa';
 import { HiOutlineSearch } from 'react-icons/hi';
-import { setIsMenuOpen } from '../configure/configure';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
-import { setSelectedProductList, setInput, setActive } from '../configure/configure';
+import { setSelectedProductList, setInput, setActive, setIsMenuOpen } from '../configure/configure';
+
 import './index.scss';
 
 function Header() {
@@ -46,7 +45,6 @@ function Header() {
                 ...product, count: 1,
             }
         })
-        console.log(prepareProductList)
         setSelectedProductList(prepareProductList)
     }, [selectedProductList])
 
@@ -77,14 +75,11 @@ function Header() {
                         <HiOutlineSearch onClick={handleIconClick} />
                     </span>
                 </div>
-
-                {!active && (
                     <div onClick={handleBasketClick} className="header__basket">
                         <p className='header__basket-title' >Basket</p>
                         <p className="header__amount">{amount}</p>
                         <FaShoppingBasket className="header__icon" />
                     </div>
-                )}
             </div>
         </>
     );

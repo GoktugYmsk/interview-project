@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { RiDeleteBin5Fill } from 'react-icons/ri';
-import { Col } from 'react-bootstrap';
 
 import { setSelectedProductList, setActive, setAmount } from '../../configure/configure';
 import './index.scss'
@@ -10,6 +9,7 @@ import './index.scss'
 function Basket() {
     const [productCounts, setProductCounts] = useState({});
     const [showWarning, setShowWarning] = useState(false);
+
     const dispatch = useDispatch();
     const wrapperRef = useRef(null);
 
@@ -97,33 +97,27 @@ function Basket() {
                             {selectedProductList.map((product, index) => (
                                 <div key={index} className="basket-modal__list">
                                     <div className="basket-modal__list-top">
-                                        <Col sm={3} lg={3} xl={3}  >
-                                            <img src={product.image} alt={product.title} />
-                                        </Col>
-                                        <Col sm={9} lg={9} xl={9}  >
-                                            <p>{product.title}</p>
-                                        </Col>
+                                        <img src={product.image} alt={product.title} />
+                                        <p>{product.title}</p>
                                     </div>
                                     <div className="basket-modal__list-alt">
-                                        <Col sm={5} lg={5} xl={5}>
-                                            <p className="basket-modal__list-amount">
-                                                Amount:{' '}
-                                                <input
-                                                    type="number"
-                                                    min="0"
-                                                    value={productCounts[product.id] || 0}
-                                                    onChange={(e) => handleCountChange(product.id, e.target.value)}
-                                                />
-                                            </p>
-                                        </Col>
-                                        <Col sm={6} lg={6} xl={6} className="count-controls">
+                                        <p className="basket-modal__list-amount">
+                                            Amount:{' '}
+                                            <input
+                                                type="number"
+                                                min="0"
+                                                value={productCounts[product.id] || 0}
+                                                onChange={(e) => handleCountChange(product.id, e.target.value)}
+                                            />
+                                        </p>
+                                        <div className="count-controls">
                                             <button onClick={() => handleDecrementCount(product.id)}>-</button>
                                             <button onClick={() => handleIncrementCount(product.id)}>+</button>
                                             <RiDeleteBin5Fill
                                                 className="basket-modal__list-icon"
                                                 onClick={() => handleDeleteProduct(product.id)}
                                             />
-                                        </Col>
+                                        </div>
                                     </div>
                                     {showWarning && productCounts[product.id] > product.rating.count && (
                                         <p style={{ color: 'red' }}>Quantity entered exceeds stock quantity!</p>

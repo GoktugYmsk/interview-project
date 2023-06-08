@@ -3,6 +3,12 @@
         display: flex;
     }
 
+    .leftBar__content-none   {
+        display: none;
+        margin: 0 !important;
+    }
+
+
     .product-object {
         width: 260px !important;
         height: 435px !important;

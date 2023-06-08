@@ -1,13 +1,14 @@
 import { useState } from 'react';
-
 import { Helmet } from 'react-helmet';
-import data from './assets/data';
 import { Row, Col } from 'react-bootstrap';
+
+import data from './assets/data';
 
 import Header from './components/header';
 import LeftBar from './components/content/leftBar';
 import Content from './components/content';
 import Basket from './components/header/basket';
+
 import './App.css';
 
 function App() {

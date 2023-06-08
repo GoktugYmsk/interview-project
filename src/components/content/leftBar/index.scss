@@ -94,4 +94,22 @@
     }
   }
 
+
+}
+
+.leftBar__content-none {
+  opacity: 0.2;
+}
+
+@media screen and (max-width: 768px) {
+  .leftBar__container {
+    border-right: none !important;
+  }
+
+  .leftBar__content {
+    border: 2px solid rgb(161, 159, 159);
+    border-left: none;
+    border-right: none;
+    border-top: none;
+  }
 }

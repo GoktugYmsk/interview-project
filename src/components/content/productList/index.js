@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 
 import ProductCart from './productCard';
 
-function ProductList({ isMobile, list, setPopup }) {
+function ProductList({ isMobile, list }) {
     const active = useSelector((state) => state.pageBlur.active);
     const input = useSelector((state) => state.inputValue.input);
 
@@ -15,7 +15,7 @@ function ProductList({ isMobile, list, setPopup }) {
     return (
         <div className={`product-list ${active ? 'prodcut-list__none' : ''}`}>
             {filteredProducts.map((product, index) => (
-                <ProductCart product={product} index={index} isMobile={isMobile} setPopup={setPopup} />
+                <ProductCart product={product} index={index} isMobile={isMobile} />
             ))}
         </div>
     )
