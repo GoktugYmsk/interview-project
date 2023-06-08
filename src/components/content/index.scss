@@ -87,7 +87,6 @@
 
                 .product-object-button-remove {
                     display: flex;
-                    margin-top: 20px;
                     background: red;
                     cursor: pointer;
                     color: white;
@@ -108,17 +107,6 @@
 
                 }
 
-                .product__delete-icon {
-                    position: relative;
-                    display: flex;
-                    font-size: 40px;
-                    margin-left: 380px;
-                    cursor: pointer;
-
-                    &:hover {
-                        color: red;
-                    }
-                }
             }
         }
     }
